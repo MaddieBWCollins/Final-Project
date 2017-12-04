@@ -6,6 +6,8 @@
 #
 ######################################################################
 import random
+import turtle
+
 class Shapes:
 
 
@@ -23,20 +25,17 @@ class Shapes:
         self.col = col
         self.coord = coord
 
-    def draw_random(turt):
-        # FIXME modify this function so that it's more generalized
+    def draw_random(self, prim, secon, col):
+        turt = turtle.Turtle()
+        wn = turtle.Screen()
         """
-        Draws a randomly colored hexagon using the turtle library
+        Draws a randomly colored shape using the turtle library
 
         :param turt: a turtle object to draw with
         :return: None
         """
-        col = ((random.random(), random.random(), random.random()))     # gives the turtle a random color
+
         turt.color = col
-
-        prim = int(input("Pick a number between 3 and 20"))
-        secon = int(input("Pick a second number between 3 and 20"))
-
 
         for num in range(prim):
             turt.forward(50)
@@ -45,3 +44,18 @@ class Shapes:
             for num in range (secon//2):
                 turt.forward(25)
                 turt.left(360//prim)
+        wn.exitonclick()
+
+
+def main():
+    Shapes.prim = int(input("Pick a number between 3 and 10. "))
+    Shapes.secon = int(input("Pick a second number between 3 and 10. "))
+    Shapes.col = str(input("Pick a color, or type 'random'. "))
+    if Shapes.col == str("random"):
+        Shapes.col = ((random.random(), random.random(), random.random()))     # gives the turtle a random color
+    else:
+        pass
+    Shapes.draw_random(Shapes.prim, Shapes.secon, Shapes.col)
+
+if __name__ == "__main__":
+    main()
