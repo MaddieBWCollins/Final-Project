@@ -11,7 +11,7 @@ import turtle
 class Shapes:
 
 
-    def __init__(self, prim, secon, col, coord):
+    def __init__(self, prim, secon, col):
         """
          Initialize a shape with random kaleidoscopic qualities.
         :param prim: This was originally 's' in the previous code. It is the primary number in out algorithm. It is user input.
@@ -23,7 +23,7 @@ class Shapes:
         self.prim = prim
         self.secon = secon
         self.col = col
-        self.coord = coord
+        # self.coord = coord
 
     def draw_random(self, prim, secon, col):
         turt = turtle.Turtle()
@@ -34,28 +34,46 @@ class Shapes:
         :param turt: a turtle object to draw with
         :return: None
         """
+        if self.col == str("random"):
+            wn.colormode(255)
+            self.col = ((random.randint(1, 255), random.randint(1, 255), random.randint(1, 255)))    # gives the turtle a random color
+            turt.pencolor((self.col))
+        else:
+            turt.pencolor(self.col)
 
-        turt.color = col
+        while True:
 
-        for num in range(prim):
-            turt.forward(50)
-            turt.left(360/prim)           # the angle ensures a perfect hexagon
+            for num in range(10):
+                if prim == "random":
+                    p = random.randint(3,10)
+                else:
+                    pass
+                if secon == "random":
+                    s = random.randint(3,10)
+                else:
+                    pass
+                turt.penup()
+            # Move the turtle to a random place on the screen
+                turt.goto(random.randint(-300, 300), random.randint(-300, 300))
+                turt.pendown()
+                for num in range(p):
+                    turt.forward(50)
+                    turt.left(360/p)           # the angle ensures a perfect hexagon
 
-            for num in range (secon//2):
-                turt.forward(25)
-                turt.left(360//prim)
+                    for num in range (s//2):
+                        turt.forward(25)
+                        turt.left(360//p)
         wn.exitonclick()
 
 
 def main():
-    Shapes.prim = int(input("Pick a number between 3 and 10. "))
-    Shapes.secon = int(input("Pick a second number between 3 and 10. "))
-    Shapes.col = str(input("Pick a color, or type 'random'. "))
-    if Shapes.col == str("random"):
-        Shapes.col = ((random.random(), random.random(), random.random()))     # gives the turtle a random color
-    else:
-        pass
-    Shapes.draw_random(Shapes.prim, Shapes.secon, Shapes.col)
+
+    prim = (input("Pick a number between 3 and 10, or type 'random'. "))
+    secon = (input("Pick a second number between 3 and 10, or type 'random'. "))
+    col = str(input("Pick a color, or type 'random'. "))
+    Shape = Shapes(prim, secon, col)
+
+    Shape.draw_random(prim, secon, col)
 
 if __name__ == "__main__":
     main()
