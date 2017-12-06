@@ -28,6 +28,8 @@ class Shapes:
     def draw_random(self, prim, secon, col):
         turt = turtle.Turtle()
         wn = turtle.Screen()
+        wn.setup (width=1400, height=700, startx=0, starty=0)
+
         """
         Draws a randomly colored shape using the turtle library
 
@@ -47,14 +49,14 @@ class Shapes:
                 if prim == "random":
                     p = random.randint(3,10)
                 else:
-                    pass
+                    p = int(prim)
                 if secon == "random":
                     s = random.randint(3,10)
                 else:
-                    pass
+                    s = int(secon)
                 turt.penup()
             # Move the turtle to a random place on the screen
-                turt.goto(random.randint(-300, 300), random.randint(-300, 300))
+                turt.goto(random.randint(-650, 650), random.randint(-300, 300))
                 turt.pendown()
                 for num in range(p):
                     turt.forward(50)
